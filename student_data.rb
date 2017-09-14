@@ -62,6 +62,37 @@ end
 
 # print green_eyed_girls(students, eye_colors)
 
+def vowel_counter (students)
+	number_of_vowels = 0
+	students.chars.each do |letter|
+		if letter == "a" || letter == "e" || letter == "i" || letter == "o" || letter == "u" 
+			number_of_vowels += 1
+		end	
+	end
+	return number_of_vowels
+end
+
+
+def sophomore_with_the_most_vowels (ages, students)
+	most_vowels = ""
+	sophomore = []
+	ages.each_with_index do |age, i|
+		if age == 15
+			sophomore.push(students[i])
+		end
+	end
+	sophomore.each_with_index do |sophomore, i|
+		if vowel_counter(sophomore) > vowel_counter(most_vowels)
+			most_vowels = sophomore
+		end
+	end
+	return most_vowels
+end
+
+print sophomore_with_the_most_vowels(ages, students)
+
+
+
 def green_eyed_average_age (eye_colors, ages)
 	green_eyed_list = []
 	total_age = 0
@@ -82,3 +113,4 @@ def green_eyed_average_age (eye_colors, ages)
 end
 
 # print green_eyed_average_age(eye_colors, ages)
+
