@@ -60,4 +60,25 @@ def green_eyed_girls (students, eye_colors)
 	return green_eyed_girl_list
 end
 
-print green_eyed_girls(students, eye_colors)
+# print green_eyed_girls(students, eye_colors)
+
+def green_eyed_average_age (eye_colors, ages)
+	green_eyed_list = []
+	total_age = 0
+	people = 0
+	average_age = 0
+	eye_colors.each_with_index do |eye_color, i|
+		if eye_color == "Green"
+			green_eyed_list.push(ages[i])
+			people += 1
+		end
+	end
+	green_eyed_list.each_with_index do |age, i|
+		total_age += ages[i]
+		average_age = total_age / people
+	end
+
+	return average_age
+end
+
+# print green_eyed_average_age(eye_colors, ages)
