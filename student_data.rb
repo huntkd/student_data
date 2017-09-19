@@ -1,14 +1,16 @@
-
+$stdout.sync = true
 
 students = []
 eye_colors = []
 ages = []
+blood_type = []
 
 File.open("student_data.csv").each do |line|
 	info = line.split(",")
 	students.push(info[0].strip)
 	eye_colors.push(info[1].strip)
 	ages.push(info[2].strip.to_i)
+	blood_type.push(info[3].strip)
 end
 
 # print students, "\n"
@@ -89,9 +91,7 @@ def sophomore_with_the_most_vowels (ages, students)
 	return most_vowels
 end
 
-print sophomore_with_the_most_vowels(ages, students)
-
-
+# print sophomore_with_the_most_vowels(ages, students)
 
 def green_eyed_average_age (eye_colors, ages)
 	green_eyed_list = []
@@ -114,3 +114,33 @@ end
 
 # print green_eyed_average_age(eye_colors, ages)
 
+
+def green_eyed_closest_to_average (eye_colors, ages, students)
+	green_eyed_list = []
+	closest_in_age = []
+	total_age = 0
+	people = 0
+	average_age = 0
+	difference_in_age = 0
+	eye_colors.each_with_index do |eye_color, i|
+		if eye_color == "Green"
+			people += 1
+			green_eyed_list.push(ages[i])
+			green_eyed_list.push(students[i])
+		end
+	end
+	green_eyed_list.each_with_index do |age, i|
+		total_age += ages[i]
+		average_age = total_age / people
+		difference_in_age = average_age - age
+
+	end
+	return closest_in_age
+end
+
+#print green_eyed_closest_to_average(eye_colors, ages, students)
+
+def donors_for_student (students, blood_type)
+	student_needing_blood = gets.chomp
+
+end
