@@ -133,15 +133,16 @@ def green_eyed_closest_to_average (eye_colors, ages, students)
 	return student_closest_to_average
 end
 
-print green_eyed_closest_to_average(eye_colors, ages, students)
+#print green_eyed_closest_to_average(eye_colors, ages, students)
 
 
-def donors_for_student (students, blood_type, student_needing_blood)
+def donors_for_student (students, blood_types, student_needing_blood)
 	donors = []
 	student_blood_type = ""
 	students.each_with_index do |student, i|
 		if student == student_needing_blood
-		student_blood_type = blood_types[i]
+			student_blood_type = blood_types[i]
+		end
 	end
 	matching_types = []
 	if student_blood_type == "O"
@@ -154,7 +155,7 @@ def donors_for_student (students, blood_type, student_needing_blood)
 		matching_types = ["AB"]
 	end
 	blood_types.each_with_index do |type, i|
-		if matching_types == blood_type[i]
+		if matching_types == blood_types[i]
 			donors.push(students[i])
 		end
 	end
@@ -162,6 +163,8 @@ def donors_for_student (students, blood_type, student_needing_blood)
 end
 
 print donors_for_student(students, blood_type, "Gloria")
+
+
 
 
 def most_blood_donors (students, blood_types)
@@ -179,4 +182,4 @@ def most_blood_donors (students, blood_types)
 	return max_donors
 end
 
-print most_blood_donors(students, blood_types)
+#print most_blood_donors(students, blood_types)
