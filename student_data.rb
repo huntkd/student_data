@@ -134,6 +134,15 @@ end
 
 #print green_eyed_closest_to_average(eye_colors, ages, students)
 
+def in_array(array, check_value)
+	array.each do |value|
+		if value == check_value
+			return true
+		end
+	end
+	return false
+end
+
 
 def donors_for_student (students, blood_types, student_needing_blood)
 	donors = []
@@ -153,17 +162,8 @@ def donors_for_student (students, blood_types, student_needing_blood)
 	elsif student_blood_type == "AB"
 		matching_types = ["AB"]
 	end
-	blood_types.each_with_index do |blood_types, i|
-		if matching_types[0] == blood_types[i]
-			donors.push(students[i])
-		end
-		if matching_types[1] == blood_types[i]
-			donors.push(students[i])
-		end
-		if matching_types[2] == blood_types[i]
-			donors.push(students[i])
-		end
-		if matching_types[3] == blood_types[i]
+	blood_types.each_with_index do |blood_type, i|
+		if in_array(matching_types, blood_type)
 			donors.push(students[i])
 		end
 	end
