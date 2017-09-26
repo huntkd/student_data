@@ -1,16 +1,15 @@
-$stdout.sync = true
 
 students = []
 eye_colors = []
 ages = []
-blood_type = []
+blood_types = []
 
 File.open("student_data.csv").each do |line|
 	info = line.split(",")
 	students.push(info[0].strip)
 	eye_colors.push(info[1].strip)
 	ages.push(info[2].strip.to_i)
-	blood_type.push(info[3].strip)
+	blood_types.push(info[3].strip)
 end
 
 # print students, "\n"
@@ -29,7 +28,7 @@ def count_brown_eyes (eye_colors)
 	return n
 end
 
-# puts count_brown_eyes(eye_colors)
+#puts count_brown_eyes(eye_colors)
 
 
 def old_enough_to_drive (ages, students)
@@ -42,7 +41,7 @@ def old_enough_to_drive (ages, students)
 	return drivers
 end
 
-# print old_enough_to_drive(ages, students)
+#print old_enough_to_drive(ages, students)
 
 
 def green_eyed_girls (students, eye_colors)
@@ -63,7 +62,7 @@ def green_eyed_girls (students, eye_colors)
 	return green_eyed_girl_list
 end
 
-# print green_eyed_girls(students, eye_colors)
+#print green_eyed_girls(students, eye_colors)
 
 
 def vowel_counter (students)
@@ -92,7 +91,7 @@ def sophomore_with_the_most_vowels (ages, students)
 	return most_vowels
 end
 
-# print sophomore_with_the_most_vowels(ages, students)
+#print sophomore_with_the_most_vowels(ages, students)
 
 
 def green_eyed_average_age (eye_colors, ages)
@@ -114,7 +113,7 @@ def green_eyed_average_age (eye_colors, ages)
 	return average_age
 end
 
-# print green_eyed_average_age(eye_colors, ages)
+#print green_eyed_average_age(eye_colors, ages)
 
 
 def green_eyed_closest_to_average (eye_colors, ages, students)
@@ -154,32 +153,46 @@ def donors_for_student (students, blood_types, student_needing_blood)
 	elsif student_blood_type == "AB"
 		matching_types = ["AB"]
 	end
-	blood_types.each_with_index do |type, i|
-		if matching_types == blood_types[i]
+	blood_types.each_with_index do |blood_types, i|
+		if matching_types[0] == blood_types[i]
+			donors.push(students[i])
+		end
+		if matching_types[1] == blood_types[i]
+			donors.push(students[i])
+		end
+		if matching_types[2] == blood_types[i]
+			donors.push(students[i])
+		end
+		if matching_types[3] == blood_types[i]
 			donors.push(students[i])
 		end
 	end
 	return donors
 end
 
-print donors_for_student(students, blood_type, "Gloria")
-
+#print donors_for_student(students, blood_types, "Gloria")
 
 
 
 def most_blood_donors (students, blood_types)
 	max_donors = 0
 	most_donors = []
-	
-	students.each_with_index do |student, i|
+
+	students.each_with_index do |student_needing_blood, i|
 		donors = donors_for_student(students, blood_types, student_needing_blood)
-		if donors >= max_donors
-			max_donors = donors
+		if donors.length > max_donors
+			max_donors = donors.length
+		end
+	end
+	students.each_with_index do |student_needing_blood, i|
+		donors = donors_for_student(students, blood_types, student_needing_blood)
+		if donors.length == max_donors
+			max_donors = donors.length
 			most_donors.push(students[i])
 		end
 	end
 	return most_donors
-	return max_donors
 end
 
-#print most_blood_donors(students, blood_types)
+print most_blood_donors(students, blood_types)
+
